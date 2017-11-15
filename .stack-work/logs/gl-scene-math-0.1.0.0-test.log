@@ -1,0 +1,30 @@
+Angle tests:
+  Convert Degrees to Degrees: [OK]
+  Convert Radians to Degrees: [OK]
+  Convert Radians to Radians: [OK]
+  Convert Degrees to Radians: [OK]
+  Add Degrees to Degrees: [OK]
+  Add Radians to Radians: [OK]
+  Add Radians to Degrees: [OK]
+  Add Degrees to Radians: [OK]
+  Sub Degrees from Degrees: [OK]
+  Sub Radians from Radians: [OK]
+  Sub Radians from Degrees: [OK]
+  Sub Degrees from Radians: [OK]
+  Multiply Degrees: [OK]
+  Multiply Radians: [OK]
+Euler tests:
+  Calculation of Euler headings: [OK]
+  Calculation of Euler elevations: [OK]
+  From vector and back again: [OK, passed 100 tests]
+Util tests:
+  Clamping an int between -10 and 10: [OK, passed 100 tests]
+  Interpolate using lerp: [OK]
+Perlin tests:
+  noise2D always give a value [-1, 1]: [OK, passed 100 tests]
+  noise2D always give zero if int input: [OK, passed 100 tests]
+
+         Properties  Test Cases   Total       
+ Passed  4           17           21          
+ Failed  0           0            0           
+ Total   4           17           21          

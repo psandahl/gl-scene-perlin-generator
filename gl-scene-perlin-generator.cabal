@@ -15,10 +15,15 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
+  exposed-modules:     Scene.PerlinGenerator
+  other-modules:       Scene.PerlinGenerator.Algo
+                       Scene.PerlinGenerator.GeneratorContext
+                       Scene.PerlinGenerator.GeneratorQuery
   build-depends:       base >= 4.7 && < 5
                      , gl-scene
                      , gl-scene-math
+                     , bytestring
+                     , flow
                      , JuicyPixels
                      , linear
                      , vector

@@ -25,6 +25,7 @@ library
                      , bytestring
                      , flow
                      , JuicyPixels
+                     , lens
                      , linear
                      , vector
   default-language:    Haskell2010

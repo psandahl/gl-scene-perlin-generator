@@ -6,7 +6,8 @@
 -- Stability: experimental
 -- Portability: portable
 module Scene.PerlinGenerator
-    ( genImage
+    ( genImageRGBA8
+    , genSerializedImageRGBA8
     , module Scene.PerlinGenerator.GeneratorContext
     , module Scene.PerlinGenerator.GeneratorQuery
     ) where
@@ -20,11 +21,13 @@ import           Scene.PerlinGenerator.Algo             (perlinValue)
 import           Scene.PerlinGenerator.GeneratorContext
 import           Scene.PerlinGenerator.GeneratorQuery
 
-genImage :: GeneratorContext -> GeneratorQuery -> ByteString
-genImage context query =
-    encodePng <|
-        generateImage (\x -> toColor . perlinValue context query x)
-                      (width query) (height query)
+genImageRGBA8 :: GeneratorContext -> GeneratorQuery -> Image PixelRGBA8
+genImageRGBA8 context query =
+    generateImage (\x -> toColor . perlinValue context query x)
+                  (width query) (height query)
+
+genSerializedImageRGBA8 :: GeneratorContext -> GeneratorQuery -> ByteString
+genSerializedImageRGBA8 context = encodePng . genImageRGBA8 context
 
 -- | Generate a color from the vectors y value. The y value goes from everything
 -- from rgb to alpha.

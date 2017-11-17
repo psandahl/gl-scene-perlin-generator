@@ -21,7 +21,7 @@ genImage :: GeneratorContext -> ActionM ()
 genImage context = do
     query <- generatorQuery
     setHeader "Content-Type" "image/png"
-    raw <| genSerializedImageRGBA8 context query
+    raw <| genSerializedImageRGB8 context query
 
 badRequest :: Text -> ActionM ()
 badRequest msg = do

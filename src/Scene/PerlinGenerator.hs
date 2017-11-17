@@ -6,8 +6,8 @@
 -- Stability: experimental
 -- Portability: portable
 module Scene.PerlinGenerator
-    ( genImageRGBA8
-    , genSerializedImageRGBA8
+    ( genImageRGB8
+    , genSerializedImageRGB8
     , module Scene.PerlinGenerator.GeneratorContext
     , module Scene.PerlinGenerator.GeneratorQuery
     ) where
@@ -21,17 +21,16 @@ import           Scene.PerlinGenerator.Algo             (perlinValue)
 import           Scene.PerlinGenerator.GeneratorContext
 import           Scene.PerlinGenerator.GeneratorQuery
 
-genImageRGBA8 :: GeneratorContext -> GeneratorQuery -> Image PixelRGBA8
-genImageRGBA8 context query =
+genImageRGB8 :: GeneratorContext -> GeneratorQuery -> Image PixelRGB8
+genImageRGB8 context query =
     generateImage (\x -> toColor . perlinValue context query x)
                   (width query) (height query)
 
-genSerializedImageRGBA8 :: GeneratorContext -> GeneratorQuery -> ByteString
-genSerializedImageRGBA8 context = encodePng . genImageRGBA8 context
+genSerializedImageRGB8 :: GeneratorContext -> GeneratorQuery -> ByteString
+genSerializedImageRGB8 context = encodePng . genImageRGB8 context
 
--- | Generate a color from the vectors y value. The y value goes from everything
--- from rgb to alpha.
-toColor :: RealFrac a => V3 a -> PixelRGBA8
+-- | Generate a color from the vectors y value
+toColor :: RealFrac a => V3 a -> PixelRGB8
 toColor vec =
     let val = round <| vec ^. _y
-    in PixelRGBA8 val val val val
+    in PixelRGB8 val val val

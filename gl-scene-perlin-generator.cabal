@@ -36,6 +36,8 @@ executable perlin-generator
   main-is:             Main.hs
   build-depends:       base >= 4.7 && < 5
                      , gl-scene-perlin-generator
+                     , gl-scene-math
+                     , containers
                      , flow
                      , http-types
                      , scotty

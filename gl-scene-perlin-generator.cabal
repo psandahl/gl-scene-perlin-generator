@@ -36,8 +36,10 @@ executable perlin-generator
   main-is:             Main.hs
   build-depends:       base >= 4.7 && < 5
                      , gl-scene-perlin-generator
-                     , easy-file
+                     , flow
+                     , http-types
                      , scotty
+                     , text
                      , wai-extra
   default-language:    Haskell2010
   ghc-options:         -Wall -threaded

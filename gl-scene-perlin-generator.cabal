@@ -19,11 +19,13 @@ library
   other-modules:       Scene.PerlinGenerator.Algo
                        Scene.PerlinGenerator.GeneratorContext
                        Scene.PerlinGenerator.GeneratorQuery
+                       Scene.PerlinGenerator.TileGenerator
                        Scene.PerlinGenerator.WeightGenerators
   build-depends:       base >= 4.7 && < 5
                      , gl-scene
                      , gl-scene-math
                      , bytestring
+                     , deepseq
                      , flow
                      , JuicyPixels
                      , lens

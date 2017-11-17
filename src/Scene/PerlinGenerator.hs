@@ -10,6 +10,7 @@ module Scene.PerlinGenerator
     , genSerializedImageRGB8
     , module Scene.PerlinGenerator.GeneratorContext
     , module Scene.PerlinGenerator.GeneratorQuery
+    , module Scene.PerlinGenerator.WeightGenerators
     ) where
 
 import           Codec.Picture
@@ -20,6 +21,7 @@ import           Linear                                 (V3, _y)
 import           Scene.PerlinGenerator.Algo             (perlinValue)
 import           Scene.PerlinGenerator.GeneratorContext
 import           Scene.PerlinGenerator.GeneratorQuery
+import           Scene.PerlinGenerator.WeightGenerators
 
 genImageRGB8 :: GeneratorContext -> GeneratorQuery -> Image PixelRGB8
 genImageRGB8 context query =

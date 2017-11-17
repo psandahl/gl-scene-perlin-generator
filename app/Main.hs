@@ -9,7 +9,7 @@ import           Data.Text.Lazy                       (Text)
 import           Flow                                 ((<|))
 import           Network.HTTP.Types                   (badRequest400)
 import           Network.Wai.Middleware.RequestLogger (logStdoutDev)
-import           Scene.Math                           (Weight)
+import           Scene.Math                           (Weight (..))
 import           Scene.PerlinGenerator
 import           Web.Scotty
 
@@ -50,4 +50,7 @@ generatorQuery =
 
 makeWeightMap :: WeightMap
 makeWeightMap =
-    Map.fromList [("singleton", singletonWeight)]
+    Map.fromList
+        [ ("singleton", singletonWeight)
+        , ("cloudy-sky", cloudySky)
+        ]

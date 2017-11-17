@@ -11,7 +11,9 @@ module Scene.PerlinGenerator.GeneratorContext
     , singletonWeight
     ) where
 
-import           Scene.Math (Perlin, Weight (..), initPerlin)
+import           Scene.Math                             (Perlin, Weight (..),
+                                                         initPerlin)
+import           Scene.PerlinGenerator.WeightGenerators (singletonWeight)
 
 -- | A set of parameters for the generation of Perlin data.
 data GeneratorContext = GeneratorContext
@@ -37,8 +39,3 @@ defaultGeneratorContext =
         , weights = singletonWeight
         , perlin = initPerlin
         }
-
--- | An identity weight, will when using the composed algoritm, produce the
--- same result as the basic algorithm.
-singletonWeight :: [Weight]
-singletonWeight = [ Weight 1 1 ]

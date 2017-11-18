@@ -7,8 +7,9 @@
 -- Portability: portable
 module Scene.PerlinGenerator.WeightGenerators
     ( singletonWeight
-    , logarithmicClouds
+    , logarithmicWeights
     , cloudySky
+    , softTerrain
     ) where
 
 import           Flow       ((<|))
@@ -19,10 +20,10 @@ import           Scene.Math (Weight (..))
 singletonWeight :: [Weight]
 singletonWeight = [ Weight 1 1 ]
 
--- | Generate clouds using n number of octaves. For each octave the frequency
+-- | Generate weights using n number of octaves. For each octave the frequency
 -- is doubled and the altitude is cut in half.
-logarithmicClouds :: Int -> Weight -> [Weight]
-logarithmicClouds n startWeight = go n startWeight []
+logarithmicWeights :: Int -> Weight -> [Weight]
+logarithmicWeights n startWeight = go n startWeight []
     where
         go :: Int -> Weight -> [Weight] -> [Weight]
         go 0 _ ws  = reverse ws
@@ -33,4 +34,8 @@ logarithmicClouds n startWeight = go n startWeight []
 
 -- | Convenience function for a nice cloudy sky.
 cloudySky :: [Weight]
-cloudySky = logarithmicClouds 10 <| Weight 1 0.5
+cloudySky = logarithmicWeights 10 <| Weight 1 0.5
+
+-- | Convenience function for a soft terrain.
+softTerrain :: [Weight]
+softTerrain = logarithmicWeights 25 <| Weight 0.35 0.8

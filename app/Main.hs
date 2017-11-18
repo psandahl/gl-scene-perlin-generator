@@ -53,4 +53,5 @@ makeWeightMap =
     Map.fromList
         [ ("singleton", singletonWeight)
         , ("cloudy-sky", cloudySky)
+        , ("soft-terrain", softTerrain)
         ]

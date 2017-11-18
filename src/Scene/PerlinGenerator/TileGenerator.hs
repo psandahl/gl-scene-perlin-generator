@@ -15,6 +15,7 @@ module Scene.PerlinGenerator.TileGenerator
 
 import           Control.DeepSeq                      (NFData)
 import           Data.Vector.Storable                 (Vector)
+import qualified Data.Vector.Storable                 as Vector
 import           GHC.Generics                         (Generic)
 import           Linear                               (V3)
 import           Scene                                (GLfloat, GLuint)
@@ -32,5 +33,21 @@ data TileData = TileData
 generateVertices :: (Int -> Int -> V3 GLfloat) -> Int -> Int -> Vector Vertex
 generateVertices = undefined
 
+-- | Generate indices for a grid of width x height vertices.
 generateIndices :: Int -> Int -> Vector GLuint
-generateIndices = undefined
+generateIndices w d =
+    Vector.concatMap (\row ->
+        Vector.concatMap (\col ->
+            let upperLeft = row * w + col
+                upperRight = upperLeft + 1
+                lowerLeft = (row + 1) * w + col
+                lowerRight = lowerLeft + 1
+            in Vector.fromList [ fromIntegral upperRight
+                               , fromIntegral upperLeft
+                               , fromIntegral lowerLeft
+                               , fromIntegral upperRight
+                               , fromIntegral lowerLeft
+                               , fromIntegral lowerRight
+                               ]
+        ) (Vector.fromList [0 .. w - 2])
+    ) (Vector.fromList [0 .. d - 2])

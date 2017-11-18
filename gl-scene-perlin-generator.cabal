@@ -30,6 +30,7 @@ library
                      , JuicyPixels
                      , lens
                      , linear
+                     , primitive
                      , vector
   default-language:    Haskell2010
   ghc-options:         -Wall
@@ -55,7 +56,9 @@ test-suite perlin-generator-tests
   main-is:             Main.hs
   other-modules:       TileGeneratorTests
   build-depends:       base >= 4.7 && < 5
+                     , gl-scene
                      , gl-scene-perlin-generator
+                     , flow
                      , test-framework
                      , test-framework-hunit
                      , HUnit

@@ -9,7 +9,7 @@ module Scene.PerlinGenerator
     ( TileData (..)
     , genImageRGB8
     , genSerializedImageRGB8
-    , genTileData
+    , genSmoothTerrain
     , module Scene.PerlinGenerator.GeneratorContext
     , module Scene.PerlinGenerator.GeneratorQuery
     , module Scene.PerlinGenerator.WeightGenerators
@@ -27,16 +27,21 @@ import           Scene.PerlinGenerator.GeneratorQuery
 import           Scene.PerlinGenerator.TileGenerator
 import           Scene.PerlinGenerator.WeightGenerators
 
+-- | Generate a RGB image using the context and query parameters.
 genImageRGB8 :: GeneratorContext -> GeneratorQuery -> Image PixelRGB8
 genImageRGB8 context query =
     generateImage (\x -> toColor . perlinValue context query x)
                   (width query) (height query)
 
+-- | Generate a PNG serialized RGB image using the context and query parameters.
 genSerializedImageRGB8 :: GeneratorContext -> GeneratorQuery -> ByteString
 genSerializedImageRGB8 context = encodePng . genImageRGB8 context
 
-genTileData :: GeneratorContext -> GeneratorQuery -> TileData
-genTileData context query =
+-- | Generate a smooth terrain using the context and query parameters. The
+-- terrain model will start at x = 0, z = 0 and must be transformed according
+-- to startX and startZ in order to fit in world.
+genSmoothTerrain :: GeneratorContext -> GeneratorQuery -> TileData
+genSmoothTerrain context query =
     let vertices' = generateVertices (perlinValue context query)
                                      (1 + width query) (1 + height query)
         indices' = generateIndices (1 + width query) (1 + height query)
@@ -46,7 +51,7 @@ genTileData context query =
             , tileHeight = height query
             , startX = xPos query
             , startZ = yPos query
-            , vertices = vertices'
+            , vertices = smoothNormals indices' vertices'
             , indices = indices'
             }
 

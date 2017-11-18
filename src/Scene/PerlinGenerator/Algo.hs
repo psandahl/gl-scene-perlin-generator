@@ -17,8 +17,7 @@ import           Scene.PerlinGenerator.GeneratorContext (GeneratorContext (..))
 import           Scene.PerlinGenerator.GeneratorQuery   (GeneratorQuery (..))
 
 -- | Workhorse function. From the context and a pair of coordinates
--- (starting at 0, 0) produce a V3, where x and y are moved using the offset
--- from the 'GeneratorQuery' and the result is scaled according to the 'GeneratorQuery'.
+-- (starting at 0, 0) produce a V3.
 -- In the resulting vector the incoming x and y become x and z components, the
 -- resulting value will be the y component.
 perlinValue :: GeneratorContext -> GeneratorQuery -> Int -> Int -> V3 GLfloat
@@ -29,5 +28,5 @@ perlinValue context query x y =
         yFrac     = fromIntegral yOffset / yDividend context
         val       = composedNoise2D (perlin context) xFrac yFrac (weights context)
         valScaled = fromIntegral (scale query) * normalizeToGLfloat val
-    in V3 (fromIntegral xOffset) valScaled (fromIntegral yOffset)
+    in V3 (fromIntegral x) valScaled (fromIntegral y)
 {-# INLINE perlinValue #-}

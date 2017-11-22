@@ -10,6 +10,7 @@ module Scene.PerlinGenerator.WeightGenerators
     , logarithmicWeights
     , cloudySky
     , softTerrain
+    , rockyTerrain
     ) where
 
 import           Flow       ((<|))
@@ -39,3 +40,7 @@ cloudySky = logarithmicWeights 10 <| Weight 1 0.5
 -- | Convenience function for a soft terrain.
 softTerrain :: [Weight]
 softTerrain = logarithmicWeights 25 <| Weight 0.35 0.8
+
+-- | Convenience function for a rocky terrain.
+rockyTerrain :: [Weight]
+rockyTerrain = logarithmicWeights 40 <| Weight 0.2 2

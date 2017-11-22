@@ -54,4 +54,5 @@ makeWeightMap =
         [ ("singleton", singletonWeight)
         , ("cloudy-sky", cloudySky)
         , ("soft-terrain", softTerrain)
+        , ("rocky-terrain", rockyTerrain)
         ]

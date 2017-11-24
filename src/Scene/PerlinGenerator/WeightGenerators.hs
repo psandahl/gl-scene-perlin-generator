@@ -43,4 +43,4 @@ softTerrain = logarithmicWeights 25 <| Weight 0.35 0.8
 
 -- | Convenience function for a rocky terrain.
 rockyTerrain :: [Weight]
-rockyTerrain = logarithmicWeights 40 <| Weight 0.2 2
+rockyTerrain = logarithmicWeights 40 <| Weight 0.2 1.6
